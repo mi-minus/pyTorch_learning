@@ -15,16 +15,20 @@ def test1():
 
 
 
-# http://www.jianshu.com/p/cbce2dd60120
+# http://www.jianshu.com/p/cbce2dd60120  [强烈推荐]
 def test_grad():
     x = Variable(torch.ones(2), requires_grad=True)
+    print x.grad
     z = 4 * x * x
     y = z.norm()
     print y
     y.backward()
     print x.grad
+    print torch.cuda.is_available()
 
 
 if __name__ == '__main__':
+    print '#### test1 ####'
     test1()
+    print '#### test grad ####'
     test_grad()
