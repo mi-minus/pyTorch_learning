@@ -14,7 +14,6 @@ def test1():
     print b.requires_grad   # True
 
 
-
 # http://www.jianshu.com/p/cbce2dd60120  [强烈推荐]
 def test_grad():
     x = Variable(torch.ones(2), requires_grad=True)
@@ -25,7 +24,6 @@ def test_grad():
     y.backward()
     print x.grad
     print torch.cuda.is_available()
-
 
 if __name__ == '__main__':
     print '#### test1 ####'
