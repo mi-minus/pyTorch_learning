@@ -26,9 +26,10 @@ def create_dataset():
 def read_data():
     X, y = create_dataset()
     dataiter = data_iter(X, y)
-    for data, label in dataiter:
-        print data, label
-        break
+    return dataiter
+    # for data, label in dataiter:
+    #     print data, label
+    #     break
 
 def data_iter(X, y):
     idx = list(range(num_examples))
@@ -37,9 +38,44 @@ def data_iter(X, y):
         j = nd.array(idx[i:min(i+batch_size, num_examples)])
         yield nd.take(X, j), nd.take(y, j)
 
-def
+def random_init_param():
+    w = nd.random_normal(shape=(num_inputs, 1))
+    b = nd.zeros((1,))
+    params = [w, b]
+    for param in params:
+        param.attach_grad()
+    return params
 
+
+def net(X):
+    return nd.dot(X, w) + b
+
+
+def square_loss(yhat, y):
+    return (yhat-y.reshape(yhat.shape)) ** 2
+
+
+def SGD(params, lr):
+    for param in params:
+        param[:] = param - lr * param.grad
+
+
+def train():
+    epochs = 5
+    learning_rate = 0.001
+    for e in range(epochs):
+        total_loss = 0
+        for data, label in read_data():
+            with autograd.record():
+                output = net(data)
+
+
+def main():
+    X, y = create_dataset()
+    params = random_init_param()
+    nd.dot(X, params[0]) + params[1]
 
 
 if __name__ == "__main__":
-    read_data()
+    # read_data()
+    random_init_param()
