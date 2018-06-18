@@ -22,6 +22,7 @@ x, y = Variable(x), Variable(y)
 # plt.scatter(x.data.numpy(), y.data.numpy())
 # plt.show()
 
+
 class Net(torch.nn.Module):
     def __init__(self, n_features, n_hidden, n_output):
         super(Net, self).__init__()
@@ -42,6 +43,7 @@ if __name__ == '__main__':
     plt.ion()
     plt.show()
 
+    print(net.parameters())
     optimizer = torch.optim.SGD(net.parameters(), lr=0.05)   # 传入 net 的所有参数, 学习率
     loss_func = torch.nn.MSELoss()        # 用于回归 - 预测值和真实值的误差计算公式 (均方差)
 
@@ -59,6 +61,7 @@ if __name__ == '__main__':
             plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
             plt.text(0.5, 0, 'Loss=%.4f' % loss.data[0], fontdict={"size":20, "color": "red"})
             plt.pause(0.1)
+        # input("^-")
 
 plt.ioff()
 plt.show()
